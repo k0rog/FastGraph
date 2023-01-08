@@ -1,0 +1,6 @@
+/venv/
+.env
+/pgdata/
+/.pytest_cache/
+.idea
+/.git/
