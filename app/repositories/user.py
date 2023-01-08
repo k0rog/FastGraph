@@ -18,7 +18,6 @@ class UserRepository(BaseRepository):
             return users.scalars()
 
     async def create_user(self, email: str, first_name: str, last_name: str, phone: str) -> User:
-        raise NotImplemented
         user = User(email=email, first_name=first_name, last_name=last_name, phone=phone)
         self.session.add(user)
         await self.session.commit()
