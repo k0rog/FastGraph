@@ -34,3 +34,4 @@ class UserRepository(BaseRepository):
         async with self.session() as session:
             cursor = await session.execute(statement)
             return bool(cursor.rowcount)
+
