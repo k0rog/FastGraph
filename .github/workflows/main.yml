@@ -1,18 +1,25 @@
 name: CI
-on: pull_request
+
+on:
+  pull_request:
+    branches: [ main ]
+    
 jobs:
-  CIJob:
+  run-pytest-tests:
     name: Pytest Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout under $GITHUB_WORKSPACE
         uses: actions/checkout@main
+        
       - name: Build
         run: docker build -t fast_graph_backend:latest . --file Dockerfile
+        
       - name: Test
         id: tests
         run: docker run fast_graph_backend:latest sh -c "su testuser && pytest -s tests/unit/test_repositories"
         continue-on-error: true
+        
       - name: Check on failures
         if: steps.tests.outcome != 'success'
         run: exit 1
