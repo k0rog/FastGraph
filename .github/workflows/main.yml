@@ -1,0 +1,15 @@
+name: CI
+on: [pull_request]
+jobs:
+  myjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        run: docker build -t fast_graph_backend:latest . --file Dockerfile
+      - name: Test
+        id: tests
+        run: docker run fast_graph_backend:latest sh -c "su testuser && pytest -s tests/unit/test_repositories"
+        continue-on-error: true
+      - name: Check on failures
+        if: steps.tests.outcome != 'success'
+        run: exit 1
