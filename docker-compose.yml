@@ -11,6 +11,9 @@ services:
     volumes:
       - ./app:/fast_graph/app
       - ./main.py:/fast_graph/main.py
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - ENVIRONMENT=${ENVIRONMENT}
     depends_on:
       - db
 
