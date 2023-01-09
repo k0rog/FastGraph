@@ -17,7 +17,7 @@ jobs:
         
       - name: Test
         id: tests
-        run: docker run fast_graph_backend:latest sh -c "su testuser && pytest -s tests/unit/test_repositories"
+        run: docker run fast_graph_backend:latest sh -c "pytest -s tests/unit/test_repositories"
         continue-on-error: true
         
       - name: Check on failures
