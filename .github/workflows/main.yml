@@ -1,9 +1,12 @@
 name: CI
-on: [pull_request]
+on: pull_request
 jobs:
-  myjob:
+  CIJob:
+    name: Pytest Tests
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout under $GITHUB_WORKSPACE
+        uses: actions/checkout@main
       - name: Build
         run: docker build -t fast_graph_backend:latest . --file Dockerfile
       - name: Test
