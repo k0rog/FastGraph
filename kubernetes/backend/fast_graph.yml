@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fastgraph-backend
+spec:
+  containers:
+    - name: fast-api-container
+      image: k0rog/fast_graph_backend:latest
+      ports:
+        - containerPort: 80
